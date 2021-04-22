@@ -1,13 +1,16 @@
+import React, {Component} from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <div>
-        Hello World
-      </div>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      date: 'tomorrow'
+    };
+  }
+  render() {
+  return <div>Hello World!</div>;
+  }
 }
 
 export default App;
