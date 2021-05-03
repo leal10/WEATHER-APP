@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Weather from './components/weather.jsx'
 import './App.css';
 
 class App extends Component {
@@ -10,9 +11,10 @@ class App extends Component {
   }
   render() {
     return <div>
-      <h2>
-        Weather App
-    </h2>
+      <Weather/>
+      <input placeholder="state" type="text"></input>
+      <input placeholder="country"></input>
+      <input type="submit"></input>
     </div>;
   }
 }
