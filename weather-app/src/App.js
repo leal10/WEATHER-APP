@@ -33,7 +33,7 @@ class App extends Component {
 
 
   render() {
-    return <div>
+    return <div className="Header">
       <Weather/>
       <input onChange={this.handleStateChange} placeholder="state" type="text"></input>
       <input onChange={this.handleCountryChange} placeholder="country"></input>
