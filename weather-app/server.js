@@ -12,6 +12,10 @@ app.use(express.static(path.join(__dirname, 'build')));
 // app.use(express.static('public'));
 // app.use('/static', express.static(path.join(__dirname, 'public')))
 
+// app.get("/api/weather", (req, res) => {
+//   axios.get()
+// });
+
 
 
 app.listen(PORT, () => {
