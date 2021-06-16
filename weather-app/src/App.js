@@ -58,10 +58,15 @@ class App extends Component {
       <input onChange={this.handleStateChange} placeholder="city" type="text"></input>
       {/* <input onChange={this.handleCountryChange} placeholder="country"></input> */}
       <input onClick={this.handleSubmit} type="submit"></input>
-      <h2>current temp: {this.state.temp.temp} </h2>
-      <h2>feels like: {this.state.feels_like} </h2>
-      <h2>description: {this.state.info.description} </h2>
-      {/* <h1>&deg;F</h1> */}
+      <div>
+        {this.state.temp === '' ? '' : <h2>current temp: {this.state.temp.temp}</h2>}
+      </div>
+      <div>
+        {this.state.temp === '' ? '' : <h2>feels like: {this.state.feels_like}</h2>}
+      </div>
+      <div>
+        {this.state.temp === '' ? '' : <h2>description: {this.state.info.description}</h2>}
+      </div>
     </div>;
   }
 }
