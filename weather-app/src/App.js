@@ -13,6 +13,8 @@ class App extends Component {
     };
     this.handleStateChange = this.handleStateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getInfo = this.getInfo.bind(this);
+    this.getDirections = this.getDirections.bind(this);
   }
 
   //axios request for the information that we need
@@ -27,15 +29,34 @@ class App extends Component {
   //event handler to submit the inputs
   handleSubmit(event) {
     event.preventDefault();
+    this.getInfo();
+  }
+
+  getInfo() {
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.city}&units=imperial&appid=${api_key}`)
       .then(results => {
-        console.log("this is the results", results.data)
+        console.log("this is the results", results.data);
+        console.log("this is the directions", results.data.coord);
         this.setState({
           info: results.data.weather[0],
           temp: results.data.main,
           feels_like: results.data.main.feels_like,
-          ciudad_name: results.data.name
+          ciudad_name: results.data.name,
+          lon: results.data.coord.lon,
+          lat: results.data.coord.lat
         })
+        this.getDirections();
+      })
+      .catch(error => {
+        console.log("this is the error", error)
+      });
+  }
+
+
+  getDirections() {
+    axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.lat}&lon=${this.state.lon}&exclude=hourly,minutely&appid=${api_key}`)
+      .then(results => {
+        console.log("this is the second call of information", results.data)
       })
       .catch(error => {
         console.log("this is the error", error)
@@ -67,6 +88,8 @@ class App extends Component {
       <div>
         {this.state.temp === '' ? '' : <h2>H: {Math.round(this.state.temp.temp_max)}{'\u00b0'}  L: {Math.round(this.state.temp.temp_min)}{'\u00b0'}</h2>}
       </div>
+      <div>{this.state.lat}</div>
+      <div>{this.state.lon}</div>
     </div>;
   }
 }
