@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Weather from './components/weather.jsx';
+import Forecast from './components/Forecast.jsx'
+import Daily from './components/Daily.jsx';
 import axios from 'axios';
 import './App.css';
 import { api_key } from './config.js';
@@ -9,7 +11,8 @@ class App extends Component {
     super(props);
     this.state = {
       temp: '',
-      info: ''
+      info: '',
+      forecast: ''
     };
     this.handleStateChange = this.handleStateChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -54,9 +57,12 @@ class App extends Component {
 
 
   getDirections() {
-    axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.lat}&lon=${this.state.lon}&exclude=hourly,minutely&appid=${api_key}`)
+    axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.lat}&lon=${this.state.lon}&units=imperial&exclude=hourly,minutely&appid=${api_key}`)
       .then(results => {
-        console.log("this is the second call of information", results.data)
+        console.log("this is the second call of information", results.data.daily)
+        this.setState({
+          forecast: results.data.daily
+        })
       })
       .catch(error => {
         console.log("this is the error", error)
@@ -88,8 +94,12 @@ class App extends Component {
       <div>
         {this.state.temp === '' ? '' : <h2>H: {Math.round(this.state.temp.temp_max)}{'\u00b0'}  L: {Math.round(this.state.temp.temp_min)}{'\u00b0'}</h2>}
       </div>
-      <div>{this.state.lat}</div>
-      <div>{this.state.lon}</div>
+      {/* <div>{this.state.lat}</div>
+      <div>{this.state.lon}</div> */}
+      <div>{this.state.forecast === '' ? '' : <Forecast forecast={this.state.forecast}/>}</div>
+      {/* <Forecast forecast={this.state.forecast}/> */}
+      <div>{this.state.forecast === '' ? '' : <Daily />}</div>
+      {/* <Daily /> */}
     </div>;
   }
 }
