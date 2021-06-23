@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Weather from './components/weather.jsx';
-import Forecast from './components/Forecast.jsx'
 import Daily from './components/Daily.jsx';
 import axios from 'axios';
 import './App.css';
@@ -73,7 +72,7 @@ class App extends Component {
 
 
   render() {
-    const url = `http://openweathermap.org/img/wn/${this.state.info.icon}@2x.png`;
+    const url = `http://openweathermap.org/img/wn/${this.state.info.icon}@4x.png`;
 
     return <div className="Header">
       <Weather />
@@ -94,12 +93,7 @@ class App extends Component {
       <div>
         {this.state.temp === '' ? '' : <h2>H: {Math.round(this.state.temp.temp_max)}{'\u00b0'}  L: {Math.round(this.state.temp.temp_min)}{'\u00b0'}</h2>}
       </div>
-      {/* <div>{this.state.lat}</div>
-      <div>{this.state.lon}</div> */}
-      <div>{this.state.forecast === '' ? '' : <Forecast forecast={this.state.forecast}/>}</div>
-      {/* <Forecast forecast={this.state.forecast}/> */}
-      <div>{this.state.forecast === '' ? '' : <Daily />}</div>
-      {/* <Daily /> */}
+      <div>{this.state.forecast === '' ? '' : <Daily forecast={this.state.forecast}/>}</div>
     </div>;
   }
 }
