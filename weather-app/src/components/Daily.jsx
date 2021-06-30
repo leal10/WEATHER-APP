@@ -18,7 +18,6 @@ const Daily = (props) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      6-Day Forecast
       <Grid container spacing={3}>
         <Grid item xs={2}>
           <Paper elevation={3}>{props.forecast[0].weather[0].description}{<img src={`http://openweathermap.org/img/wn/${props.forecast[0].weather[0].icon}@2x.png`} alt={''}></img>}{Math.round(props.forecast[0].temp.max)}{'\u00b0'} {Math.round(props.forecast[0].temp.min)}{'\u00b0'}</Paper>

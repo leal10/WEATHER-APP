@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Weather from './components/weather.jsx';
+import NavBar from './components/NavBar.jsx';
 import Daily from './components/Daily.jsx';
 import axios from 'axios';
 import './App.css';
@@ -75,8 +75,8 @@ class App extends Component {
     const url = `http://openweathermap.org/img/wn/${this.state.info.icon}@4x.png`;
 
     return <div className="Header">
-      <Weather />
-      <input onChange={this.handleStateChange} placeholder="city" type="text"></input>
+      <NavBar />
+      <input onChange={this.handleStateChange} placeholder="Enter city" type="text"></input>
       <input onClick={this.handleSubmit} type="submit"></input>
       <div>
         {this.state.ciudad_name === '' ? '' : <h2>{this.state.ciudad_name}</h2>}
